@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Learn DevOps, Networking, and Middleware concepts through interactive drag-and-drop puzzles. Build CI/CD pipelines, network stacks, and more!">
+    <title>DevOps Pipeline Builder — Drag & Drop Puzzle Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- ===================== WELCOME SCREEN ===================== -->
+    <section id="screen-welcome" class="screen active">
+        <div class="welcome-container">
+            <div class="welcome-glow"></div>
+            <div class="welcome-badge">🎮 INTERACTIVE LEARNING</div>
+            <h1 class="welcome-title">
+                <span class="title-line">DevOps Pipeline</span>
+                <span class="title-line accent">Builder</span>
+            </h1>
+            <p class="welcome-desc">Master DevOps, Networking & Middleware concepts by building real-world architectures
+                through drag-and-drop puzzles.</p>
+            <div class="welcome-stats">
+                <div class="stat-item">
+                    <span class="stat-number">30</span>
+                    <span class="stat-label">Puzzles</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">4</span>
+                    <span class="stat-label">Categories</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">3</span>
+                    <span class="stat-label">Difficulty Levels</span>
+                </div>
+            </div>
+            <button id="btn-start" class="btn-primary btn-glow" onclick="App.showScreen('screen-select')">
+                <span>Start Playing</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+            </button>
+        </div>
+        <div class="welcome-particles" id="particles"></div>
+    </section>
+
+    <!-- ===================== PUZZLE SELECT SCREEN ===================== -->
+    <section id="screen-select" class="screen">
+        <header class="select-header">
+            <button class="btn-back" onclick="App.showScreen('screen-welcome')">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+            </button>
+            <h2>Select a Puzzle</h2>
+            <div class="header-progress">
+                <span id="progress-text">0 / 12 completed</span>
+            </div>
+        </header>
+        <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all" onclick="App.filterPuzzles('all')">All</button>
+            <button class="filter-btn" data-filter="DevOps" onclick="App.filterPuzzles('DevOps')">
+                <span class="cat-dot devops"></span> DevOps
+            </button>
+            <button class="filter-btn" data-filter="Network" onclick="App.filterPuzzles('Network')">
+                <span class="cat-dot network"></span> Network
+            </button>
+            <button class="filter-btn" data-filter="Middleware" onclick="App.filterPuzzles('Middleware')">
+                <span class="cat-dot middleware"></span> Middleware
+            </button>
+            <button class="filter-btn" data-filter="Kubernetes" onclick="App.filterPuzzles('Kubernetes')">
+                <span class="cat-dot kubernetes"></span> Kubernetes
+            </button>
+        </div>
+        <div class="puzzle-grid" id="puzzle-grid">
+            <!-- Puzzle cards rendered by JS -->
+        </div>
+    </section>
+
+    <!-- ===================== GAME SCREEN ===================== -->
+    <section id="screen-game" class="screen">
+        <header class="game-header">
+            <button class="btn-back" onclick="App.confirmExit()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+            </button>
+            <div class="game-title-group">
+                <span class="game-category-badge" id="game-category"></span>
+                <h2 id="game-title"></h2>
+            </div>
+            <div class="game-info">
+                <div class="timer" id="timer">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M12 6v6l4 2" />
+                    </svg>
+                    <span id="timer-display">00:00</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Story Briefing -->
+        <div class="briefing-card" id="briefing-card">
+            <div class="briefing-icon">📖</div>
+            <p id="briefing-text"></p>
+            <button class="btn-secondary" onclick="App.closeBriefing()">Got it, let's go!</button>
+        </div>
+
+        <!-- Game Board -->
+        <div class="game-board" id="game-board">
+            <div class="board-label">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                    <path d="M2 17l10 5 10-5" />
+                    <path d="M2 12l10 5 10-5" />
+                </svg>
+                <span>Arrange in the correct order</span>
+            </div>
+            <div class="drop-zones" id="drop-zones">
+                <!-- Drop slots rendered by JS -->
+            </div>
+        </div>
+
+        <!-- Draggable Items Pool -->
+        <div class="items-pool" id="items-pool">
+            <div class="pool-label">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="7" />
+                    <rect x="14" y="3" width="7" height="7" />
+                    <rect x="3" y="14" width="7" height="7" />
+                    <rect x="14" y="14" width="7" height="7" />
+                </svg>
+                <span>Drag these items to the slots above</span>
+            </div>
+            <div class="pool-cards" id="pool-cards">
+                <!-- Draggable cards rendered by JS -->
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="game-actions">
+            <button class="btn-hint" id="btn-hint" onclick="App.useHint()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3" />
+                    <circle cx="12" cy="17" r=".5" />
+                </svg>
+                <span>Hint</span>
+            </button>
+            <button class="btn-primary btn-check" id="btn-check" onclick="App.checkAnswer()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M20 6L9 17l-5-5" />
+                </svg>
+                <span>Check Answer</span>
+            </button>
+            <button class="btn-secondary btn-reset" onclick="App.resetPuzzle()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M1 4v6h6" />
+                    <path d="M3.51 15a9 9 0 102.13-9.36L1 10" />
+                </svg>
+                <span>Reset</span>
+            </button>
+        </div>
+
+        <!-- Hint Overlay -->
+        <div class="hint-overlay" id="hint-overlay">
+            <div class="hint-card">
+                <div class="hint-header">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M9 18h6M10 22h4M12 2a7 7 0 017 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 01-1 1h-6a1 1 0 01-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 017-7z" />
+                    </svg>
+                    <span>Hint</span>
+                </div>
+                <p id="hint-text"></p>
+                <button class="btn-secondary" onclick="App.closeHint()">Got it!</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== RESULTS SCREEN ===================== -->
+    <section id="screen-results" class="screen">
+        <div class="results-container">
+            <div class="results-glow"></div>
+            <div class="results-stars" id="results-stars"></div>
+            <h2 class="results-title" id="results-title">Puzzle Complete!</h2>
+            <p class="results-subtitle" id="results-subtitle"></p>
+            <div class="results-stats">
+                <div class="result-stat">
+                    <span class="result-stat-label">Time</span>
+                    <span class="result-stat-value" id="result-time">00:00</span>
+                </div>
+                <div class="result-stat">
+                    <span class="result-stat-label">Accuracy</span>
+                    <span class="result-stat-value" id="result-accuracy">100%</span>
+                </div>
+                <div class="result-stat">
+                    <span class="result-stat-label">Score</span>
+                    <span class="result-stat-value" id="result-score">1000</span>
+                </div>
+            </div>
+            <!-- Pipeline Explanation -->
+            <div class="explanation-section" id="explanation-section">
+                <div class="explanation-header">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z" />
+                        <path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z" />
+                    </svg>
+                    <span>How This Pipeline Works</span>
+                </div>
+                <div class="explanation-steps" id="explanation-steps">
+                    <!-- Steps rendered by JS -->
+                </div>
+            </div>
+            <div class="results-actions">
+                <button class="btn-secondary" onclick="App.showScreen('screen-select')">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7" />
+                        <rect x="14" y="3" width="7" height="7" />
+                        <rect x="3" y="14" width="7" height="7" />
+                        <rect x="14" y="14" width="7" height="7" />
+                    </svg>
+                    <span>All Puzzles</span>
+                </button>
+                <button class="btn-primary btn-glow" id="btn-next-puzzle" onclick="App.nextPuzzle()">
+                    <span>Next Puzzle</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== CONFIRM EXIT MODAL ===================== -->
+    <div class="modal-overlay" id="modal-exit">
+        <div class="modal-card">
+            <h3>Leave Puzzle?</h3>
+            <p>Your progress on this puzzle will be lost.</p>
+            <div class="modal-actions">
+                <button class="btn-secondary" onclick="App.closeModal()">Stay</button>
+                <button class="btn-danger" onclick="App.exitPuzzle()">Leave</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/puzzles.js"></script>
+    <script src="js/explanations.js"></script>
+    <script src="js/dragdrop.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
