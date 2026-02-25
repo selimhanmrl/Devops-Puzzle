@@ -429,16 +429,12 @@ body {
     background: var(--accent-blue);
 }
 
-.cat-dot.network {
-    background: var(--accent-green);
+.cat-dot.git {
+    background: var(--accent-orange);
 }
 
 .cat-dot.middleware {
     background: var(--accent-purple);
-}
-
-.cat-dot.kubernetes {
-    background: var(--accent-orange);
 }
 
 /* Puzzle Grid */
@@ -474,16 +470,12 @@ body {
     background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
 }
 
-.puzzle-card.network::before {
-    background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan));
+.puzzle-card.git::before {
+    background: linear-gradient(90deg, var(--accent-orange), var(--accent-yellow));
 }
 
 .puzzle-card.middleware::before {
     background: linear-gradient(90deg, var(--accent-purple), var(--accent-blue));
-}
-
-.puzzle-card.kubernetes::before {
-    background: linear-gradient(90deg, var(--accent-orange), var(--accent-yellow));
 }
 
 .puzzle-card:hover {
@@ -528,19 +520,14 @@ body {
     background: rgba(88, 166, 255, 0.1);
 }
 
-.puzzle-category.network {
-    color: var(--accent-green);
-    background: rgba(63, 185, 80, 0.1);
+.puzzle-category.git {
+    color: var(--accent-orange);
+    background: rgba(240, 136, 62, 0.1);
 }
 
 .puzzle-category.middleware {
     color: var(--accent-purple);
     background: rgba(188, 140, 255, 0.1);
-}
-
-.puzzle-category.kubernetes {
-    color: var(--accent-orange);
-    background: rgba(240, 136, 62, 0.1);
 }
 
 .puzzle-card-title {

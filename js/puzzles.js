@@ -143,141 +143,142 @@ const PUZZLES = [
         hint: "Create the chart scaffold → configure values → lint for errors → package the chart → push to repository → install/upgrade in the cluster."
     },
 
-    // ==================== Network Puzzles ====================
+    // ==================== Git Puzzles ====================
     {
         id: 9,
-        title: "DNS Resolution",
-        category: "Network",
+        title: "Git Feature Branch Workflow",
+        category: "Git",
         difficulty: "Easy",
-        description: "Users report that shop.example.com isn't loading. You need to trace exactly how a browser resolves a domain name. The company uses Cloudflare DNS (1.1.1.1) and their domain is registered on Namecheap. Arrange the DNS resolution chain.",
+        description: "Your team just adopted a feature branch workflow. A new developer asks you to walk them through the process of building a feature from start to finish. Show them the correct order — from creating a branch to getting it merged into main.",
         items: [
-            { id: "dns-1", label: "Chrome Browser Cache", icon: "🌐", tech: "Chrome" },
-            { id: "dns-2", label: "Windows DNS Resolver", icon: "💻", tech: "OS Resolver" },
-            { id: "dns-3", label: "Cloudflare 1.1.1.1", icon: "🔄", tech: "Cloudflare DNS" },
-            { id: "dns-4", label: "ICANN Root Server", icon: "🌍", tech: "Root DNS (.)" },
-            { id: "dns-5", label: "Verisign .com TLD", icon: "🏷️", tech: "Verisign" },
-            { id: "dns-6", label: "Namecheap Authoritative NS", icon: "✅", tech: "Namecheap DNS" }
+            { id: "git-fb-1", label: "git checkout -b feature/login", icon: "🌿", tech: "Git Branch" },
+            { id: "git-fb-2", label: "Write Code & Save Files", icon: "💻", tech: "VS Code" },
+            { id: "git-fb-3", label: "git add -A (Stage Changes)", icon: "📦", tech: "Git Staging" },
+            { id: "git-fb-4", label: "git commit -m 'feat: login'", icon: "💾", tech: "Git Commit" },
+            { id: "git-fb-5", label: "git push origin feature/login", icon: "🚀", tech: "Git Push" },
+            { id: "git-fb-6", label: "Open Pull Request & Merge", icon: "🔀", tech: "GitHub PR" }
         ],
-        correctOrder: ["dns-1", "dns-2", "dns-3", "dns-4", "dns-5", "dns-6"],
-        hint: "DNS starts at the browser cache, then the OS resolver, then Cloudflare's recursive server, then root → .com TLD (Verisign) → authoritative nameserver (Namecheap)."
+        correctOrder: ["git-fb-1", "git-fb-2", "git-fb-3", "git-fb-4", "git-fb-5", "git-fb-6"],
+        hint: "Create a feature branch → write code → stage changes → commit → push to remote → open a PR and merge."
     },
     {
         id: 10,
-        title: "TCP/IP Network Stack",
-        category: "Network",
+        title: "Git Rebase vs Merge",
+        category: "Git",
         difficulty: "Medium",
-        description: "A junior network engineer asks you to explain how an HTTP request travels from a React frontend to the network. Walk them through the OSI layers with the actual protocols used at each level.",
+        description: "Your feature branch is 5 commits behind main and the team lead says 'rebase before merging, we keep a linear history.' You've never rebased before. Arrange the steps to rebase your branch onto main and push.",
         items: [
-            { id: "tcpip-1", label: "HTTP/2 (Application)", icon: "📱", tech: "HTTP/2" },
-            { id: "tcpip-2", label: "TCP Port 443 (Transport)", icon: "🔌", tech: "TCP" },
-            { id: "tcpip-3", label: "IPv4 Routing (Network)", icon: "🗺️", tech: "IPv4" },
-            { id: "tcpip-4", label: "Ethernet Frame (Data Link)", icon: "🔗", tech: "IEEE 802.3" },
-            { id: "tcpip-5", label: "Cat6 / Fiber (Physical)", icon: "⚡", tech: "Cat6 / Fiber Optic" }
+            { id: "git-rb-1", label: "git checkout feature/api", icon: "🌿", tech: "Git Checkout" },
+            { id: "git-rb-2", label: "git fetch origin", icon: "📥", tech: "Git Fetch" },
+            { id: "git-rb-3", label: "git rebase origin/main", icon: "🔄", tech: "Git Rebase" },
+            { id: "git-rb-4", label: "Resolve Any Conflicts", icon: "⚔️", tech: "Conflict Resolution" },
+            { id: "git-rb-5", label: "git rebase --continue", icon: "▶️", tech: "Git Rebase Continue" },
+            { id: "git-rb-6", label: "git push --force-with-lease", icon: "🚀", tech: "Git Force Push" }
         ],
-        correctOrder: ["tcpip-1", "tcpip-2", "tcpip-3", "tcpip-4", "tcpip-5"],
-        hint: "Top to bottom: HTTP/2 at application, TCP at transport, IPv4 handles routing, Ethernet frames at data link, physical cables carry the signals."
+        correctOrder: ["git-rb-1", "git-rb-2", "git-rb-3", "git-rb-4", "git-rb-5", "git-rb-6"],
+        hint: "Switch to your branch → fetch latest → rebase onto main → fix conflicts → continue rebase → force push (safely) since history changed."
     },
     {
         id: 11,
-        title: "Load Balancer Architecture",
-        category: "Network",
+        title: "Git Conflict Resolution",
+        category: "Git",
         difficulty: "Medium",
-        description: "Your e-commerce platform needs to handle 50,000 concurrent users during Black Friday. The architect uses AWS services with Nginx and PostgreSQL. The sticky notes fell off the whiteboard — put them back from user to database.",
+        description: "You and a teammate both edited the same file. When you try to pull, Git shows a merge conflict. Your PM is waiting for this fix. Arrange the steps to properly resolve the conflict and push.",
         items: [
-            { id: "lb-1", label: "User's Browser", icon: "👤", tech: "Chrome / Firefox" },
-            { id: "lb-2", label: "CloudFront CDN", icon: "🌐", tech: "AWS CloudFront" },
-            { id: "lb-3", label: "AWS WAF Firewall", icon: "🛡️", tech: "AWS WAF" },
-            { id: "lb-4", label: "Nginx Load Balancer", icon: "⚖️", tech: "Nginx" },
-            { id: "lb-5", label: "Spring Boot Cluster", icon: "🍃", tech: "Spring Boot" },
-            { id: "lb-6", label: "PostgreSQL + Redis", icon: "🗄️", tech: "PostgreSQL / Redis" }
+            { id: "git-cf-1", label: "git pull origin main", icon: "📥", tech: "Git Pull" },
+            { id: "git-cf-2", label: "See CONFLICT in terminal", icon: "⚠️", tech: "Git Merge Conflict" },
+            { id: "git-cf-3", label: "Open file & edit <<<< markers", icon: "✏️", tech: "VS Code Merge Editor" },
+            { id: "git-cf-4", label: "git add resolved-file.js", icon: "📦", tech: "Git Stage" },
+            { id: "git-cf-5", label: "git commit (merge commit)", icon: "💾", tech: "Git Merge Commit" },
+            { id: "git-cf-6", label: "git push origin main", icon: "🚀", tech: "Git Push" }
         ],
-        correctOrder: ["lb-1", "lb-2", "lb-3", "lb-4", "lb-5", "lb-6"],
-        hint: "Traffic flows: Browser → CloudFront (cached assets) → AWS WAF (blocks attacks) → Nginx (distributes load) → Spring Boot apps → PostgreSQL with Redis cache."
+        correctOrder: ["git-cf-1", "git-cf-2", "git-cf-3", "git-cf-4", "git-cf-5", "git-cf-6"],
+        hint: "Pull and get conflict → see the conflict notification → manually edit the conflict markers → stage the resolved file → commit the merge → push."
     },
     {
         id: 12,
-        title: "SSL/TLS Handshake",
-        category: "Network",
-        difficulty: "Hard",
-        description: "A banking app's customers see 'Connection Not Secure' warnings. The app uses Let's Encrypt certificates behind an Nginx reverse proxy. You need to trace the TLS 1.3 handshake to diagnose the certificate issue.",
+        title: "Git Stash Workflow",
+        category: "Git",
+        difficulty: "Easy",
+        description: "You're halfway through a feature when a critical bug report comes in. You need to switch branches immediately, but you don't want to lose your work. Use git stash to save and restore your changes.",
         items: [
-            { id: "tls-1", label: "Client Hello (TLS 1.3)", icon: "👋", tech: "TLS 1.3" },
-            { id: "tls-2", label: "Nginx Sends Certificate", icon: "📜", tech: "Nginx + Let's Encrypt" },
-            { id: "tls-3", label: "CA Chain Verification", icon: "🔍", tech: "Let's Encrypt CA" },
-            { id: "tls-4", label: "ECDHE Key Exchange", icon: "🔑", tech: "Elliptic Curve DH" },
-            { id: "tls-5", label: "AES-256-GCM Session Key", icon: "🔐", tech: "AES-256-GCM" },
-            { id: "tls-6", label: "Encrypted HTTPS Traffic", icon: "🔒", tech: "HTTPS" }
+            { id: "git-st-1", label: "git stash save 'WIP: feature'", icon: "📦", tech: "Git Stash" },
+            { id: "git-st-2", label: "git checkout hotfix/bug-123", icon: "🌿", tech: "Git Checkout" },
+            { id: "git-st-3", label: "Fix the Bug & Commit", icon: "🐛", tech: "Bug Fix" },
+            { id: "git-st-4", label: "git checkout feature/dashboard", icon: "🔙", tech: "Git Checkout" },
+            { id: "git-st-5", label: "git stash pop", icon: "📤", tech: "Git Stash Pop" },
+            { id: "git-st-6", label: "Continue Feature Work", icon: "💻", tech: "Development" }
         ],
-        correctOrder: ["tls-1", "tls-2", "tls-3", "tls-4", "tls-5", "tls-6"],
-        hint: "TLS 1.3: Client Hello → Nginx responds with Let's Encrypt cert → browser verifies the CA chain → ECDHE key exchange → AES-256 session key → encrypted communication."
+        correctOrder: ["git-st-1", "git-st-2", "git-st-3", "git-st-4", "git-st-5", "git-st-6"],
+        hint: "Stash your current changes → switch to hotfix branch → fix and commit → switch back to feature branch → pop your stash → continue working."
     },
     {
         id: 13,
-        title: "VPN Tunnel Setup",
-        category: "Network",
+        title: "Git Cherry-Pick Hotfix",
+        category: "Git",
         difficulty: "Medium",
-        description: "Your company's remote workers need secure access to internal resources. The network team is setting up a site-to-site VPN using WireGuard between the office and AWS VPC. Arrange the VPN setup process.",
+        description: "A critical fix was committed to the develop branch, but production is on the release/v2.1 branch and needs it NOW. You can't merge all of develop — only that one specific commit. Use git cherry-pick.",
         items: [
-            { id: "vpn-1", label: "Generate WireGuard Keys", icon: "🔑", tech: "wg genkey / pubkey" },
-            { id: "vpn-2", label: "Configure wg0.conf", icon: "📝", tech: "WireGuard Config" },
-            { id: "vpn-3", label: "Set AWS VPC Routes", icon: "🗺️", tech: "AWS VPC Route Table" },
-            { id: "vpn-4", label: "Open UDP Port 51820", icon: "🔓", tech: "AWS Security Group" },
-            { id: "vpn-5", label: "wg-quick up wg0", icon: "▶️", tech: "WireGuard CLI" },
-            { id: "vpn-6", label: "Verify with ping + traceroute", icon: "✅", tech: "ping / traceroute" }
+            { id: "git-cp-1", label: "git log develop (find hash)", icon: "🔍", tech: "Git Log" },
+            { id: "git-cp-2", label: "git checkout release/v2.1", icon: "🌿", tech: "Git Checkout" },
+            { id: "git-cp-3", label: "git cherry-pick abc1234", icon: "🍒", tech: "Git Cherry-Pick" },
+            { id: "git-cp-4", label: "Resolve Conflicts (if any)", icon: "⚔️", tech: "Conflict Resolution" },
+            { id: "git-cp-5", label: "Run Tests & Verify", icon: "🧪", tech: "Test Suite" },
+            { id: "git-cp-6", label: "git push origin release/v2.1", icon: "🚀", tech: "Git Push" }
         ],
-        correctOrder: ["vpn-1", "vpn-2", "vpn-3", "vpn-4", "vpn-5", "vpn-6"],
-        hint: "Generate key pairs → configure WireGuard interface → set VPC routing → open firewall port → bring tunnel up → verify connectivity."
+        correctOrder: ["git-cp-1", "git-cp-2", "git-cp-3", "git-cp-4", "git-cp-5", "git-cp-6"],
+        hint: "Find the commit hash in develop → switch to release branch → cherry-pick the specific commit → resolve any conflicts → test it → push."
     },
     {
         id: 14,
-        title: "HTTP Request Lifecycle",
-        category: "Network",
-        difficulty: "Easy",
-        description: "A frontend developer asks 'What happens when I type a URL in the browser?' Walk them through the full lifecycle of an HTTP request from the address bar to the rendered page.",
+        title: "Gitflow Release Cycle",
+        category: "Git",
+        difficulty: "Hard",
+        description: "Your company uses Gitflow and it's release week. Features are done on develop, and you need to cut a release branch, stabilize it, tag it, and merge to both main and develop. Arrange the full release cycle.",
         items: [
-            { id: "http-1", label: "URL Parsing + DNS Lookup", icon: "🔍", tech: "Browser Engine" },
-            { id: "http-2", label: "TCP 3-Way Handshake", icon: "🤝", tech: "TCP SYN/ACK" },
-            { id: "http-3", label: "TLS Handshake (HTTPS)", icon: "🔐", tech: "TLS 1.3" },
-            { id: "http-4", label: "HTTP GET Request Sent", icon: "📤", tech: "HTTP/2" },
-            { id: "http-5", label: "Server Response (200 OK)", icon: "📥", tech: "Nginx / Apache" },
-            { id: "http-6", label: "Browser Renders HTML/CSS", icon: "🖥️", tech: "Chrome V8 / Blink" }
+            { id: "git-gf-1", label: "git checkout -b release/v3.0 develop", icon: "🌿", tech: "Release Branch" },
+            { id: "git-gf-2", label: "Bump Version & Fix Bugs", icon: "🔧", tech: "Version Bump" },
+            { id: "git-gf-3", label: "QA Testing on Release Branch", icon: "🧪", tech: "Quality Assurance" },
+            { id: "git-gf-4", label: "git merge release/v3.0 → main", icon: "🔀", tech: "Merge to Main" },
+            { id: "git-gf-5", label: "git tag -a v3.0.0 -m 'Release'", icon: "🏷️", tech: "Git Tag" },
+            { id: "git-gf-6", label: "git merge release/v3.0 → develop", icon: "🔄", tech: "Back-merge" }
         ],
-        correctOrder: ["http-1", "http-2", "http-3", "http-4", "http-5", "http-6"],
-        hint: "Parse URL and resolve DNS → establish TCP connection → negotiate TLS → send the HTTP request → receive response → render the page."
+        correctOrder: ["git-gf-1", "git-gf-2", "git-gf-3", "git-gf-4", "git-gf-5", "git-gf-6"],
+        hint: "Branch from develop → bump version & fix bugs → QA test → merge to main → tag the release → merge back to develop."
     },
     {
         id: 15,
-        title: "Firewall Rule Chain",
-        category: "Network",
-        difficulty: "Hard",
-        description: "Your Linux server is exposed to the internet and you need to configure iptables/nftables firewall rules. The security team requires specific ordering of rules for incoming traffic. Arrange the firewall rule evaluation order.",
+        title: "Git Bisect Bug Hunt",
+        category: "Git",
+        difficulty: "Medium",
+        description: "A regression bug appeared somewhere in the last 50 commits. Testing each one manually would take hours. Your senior dev says: 'use git bisect — it binary searches through commits to find the bad one.' Arrange the steps.",
         items: [
-            { id: "fw-1", label: "Accept Established/Related", icon: "✅", tech: "conntrack (stateful)" },
-            { id: "fw-2", label: "Drop Invalid Packets", icon: "🚫", tech: "iptables DROP" },
-            { id: "fw-3", label: "Allow SSH (Port 22)", icon: "🔑", tech: "OpenSSH" },
-            { id: "fw-4", label: "Allow HTTP/HTTPS (80/443)", icon: "🌐", tech: "Nginx Ports" },
-            { id: "fw-5", label: "Rate Limit New Connections", icon: "🚦", tech: "iptables hashlimit" },
-            { id: "fw-6", label: "Default DROP Policy", icon: "🛑", tech: "iptables -P DROP" }
+            { id: "git-bs-1", label: "git bisect start", icon: "🔍", tech: "Git Bisect" },
+            { id: "git-bs-2", label: "git bisect bad (current)", icon: "❌", tech: "Mark Bad Commit" },
+            { id: "git-bs-3", label: "git bisect good v2.0.0", icon: "✅", tech: "Mark Good Commit" },
+            { id: "git-bs-4", label: "Test → git bisect good/bad", icon: "🧪", tech: "Binary Search Test" },
+            { id: "git-bs-5", label: "Git finds the guilty commit", icon: "🎯", tech: "First Bad Commit" },
+            { id: "git-bs-6", label: "git bisect reset", icon: "🔄", tech: "Git Bisect Reset" }
         ],
-        correctOrder: ["fw-1", "fw-2", "fw-3", "fw-4", "fw-5", "fw-6"],
-        hint: "First allow existing connections (fast path), drop invalid, then whitelist specific ports, rate limit new connections, and finally default deny everything else."
+        correctOrder: ["git-bs-1", "git-bs-2", "git-bs-3", "git-bs-4", "git-bs-5", "git-bs-6"],
+        hint: "Start bisect → mark current as bad → mark known good version → test each checkout and mark good/bad → Git finds the culprit → reset to normal."
     },
     {
         id: 16,
-        title: "VLAN Network Segmentation",
-        category: "Network",
+        title: "Git Submodule Setup",
+        category: "Git",
         difficulty: "Hard",
-        description: "Your company's flat network was compromised and the CISO demands network segmentation. The network team is implementing VLANs with a managed Cisco switch and pfSense firewall. Arrange the segmentation steps.",
+        description: "Your monorepo is getting too big and the team decides to extract a shared component library into its own repo and include it as a Git submodule. Arrange the steps to add and manage the submodule.",
         items: [
-            { id: "vlan-1", label: "Design VLAN Subnets", icon: "📐", tech: "IP Subnetting" },
-            { id: "vlan-2", label: "Create VLANs on Cisco Switch", icon: "🔧", tech: "Cisco IOS CLI" },
-            { id: "vlan-3", label: "Assign Switch Ports to VLANs", icon: "🔌", tech: "802.1Q Access Ports" },
-            { id: "vlan-4", label: "Configure Trunk Port", icon: "🔗", tech: "802.1Q Trunk" },
-            { id: "vlan-5", label: "pfSense Inter-VLAN Routing", icon: "🛡️", tech: "pfSense" },
-            { id: "vlan-6", label: "Apply ACL Firewall Rules", icon: "📋", tech: "pfSense ACL Rules" }
+            { id: "git-sm-1", label: "git submodule add <url> libs/ui", icon: "📦", tech: "Git Submodule Add" },
+            { id: "git-sm-2", label: ".gitmodules file created", icon: "📝", tech: ".gitmodules Config" },
+            { id: "git-sm-3", label: "git commit -m 'add ui submodule'", icon: "💾", tech: "Git Commit" },
+            { id: "git-sm-4", label: "Teammate: git submodule init", icon: "🔧", tech: "Submodule Init" },
+            { id: "git-sm-5", label: "git submodule update --remote", icon: "📥", tech: "Submodule Update" },
+            { id: "git-sm-6", label: "Commit updated submodule ref", icon: "🔗", tech: "Update Reference" }
         ],
-        correctOrder: ["vlan-1", "vlan-2", "vlan-3", "vlan-4", "vlan-5", "vlan-6"],
-        hint: "Plan the subnets → create VLANs on the switch → assign ports → set up trunking → enable inter-VLAN routing on pfSense → apply access control lists."
+        correctOrder: ["git-sm-1", "git-sm-2", "git-sm-3", "git-sm-4", "git-sm-5", "git-sm-6"],
+        hint: "Add submodule → .gitmodules is auto-created → commit the addition → teammates init the submodule → update to latest → commit the new reference."
     },
 
     // ==================== Middleware Puzzles ====================
@@ -418,107 +419,315 @@ const PUZZLES = [
         hint: "Install Nginx → create config file → define upstream servers → set proxy rules for each path → add SSL with Certbot → reload Nginx to apply."
     },
 
-    // ==================== Kubernetes Puzzles ====================
+    // ==================== More Git Puzzles ====================
     {
         id: 25,
-        title: "K8s Service Networking",
-        category: "Kubernetes",
+        title: "Git Hooks CI Pipeline",
+        category: "Git",
         difficulty: "Medium",
-        description: "Your team deployed 3 microservices on Kubernetes but they can't communicate with each other. The network engineer needs to understand how K8s service discovery and networking works. Arrange the request flow from one pod to another.",
+        description: "Your team wants to catch issues BEFORE code even reaches GitHub. The lead engineer sets up Git hooks using Husky to lint, test, and validate commit messages locally. Arrange the hooks in the order they fire during a commit + push.",
         items: [
-            { id: "ksvc-1", label: "Pod A calls svc-b:8080", icon: "📤", tech: "K8s DNS Name" },
-            { id: "ksvc-2", label: "CoreDNS Resolves Service", icon: "🔍", tech: "CoreDNS" },
-            { id: "ksvc-3", label: "ClusterIP Allocated", icon: "🌐", tech: "kube-apiserver" },
-            { id: "ksvc-4", label: "kube-proxy iptables Rule", icon: "🔀", tech: "kube-proxy" },
-            { id: "ksvc-5", label: "Load Balance to Endpoint", icon: "⚖️", tech: "Endpoints API" },
-            { id: "ksvc-6", label: "Traffic Reaches Pod B", icon: "✅", tech: "Container Network (CNI)" }
+            { id: "git-hk-1", label: "pre-commit: lint-staged", icon: "🔍", tech: "Husky + lint-staged" },
+            { id: "git-hk-2", label: "ESLint + Prettier Fix", icon: "✨", tech: "ESLint / Prettier" },
+            { id: "git-hk-3", label: "commit-msg: commitlint", icon: "📝", tech: "commitlint" },
+            { id: "git-hk-4", label: "pre-push: npm test", icon: "🧪", tech: "Jest" },
+            { id: "git-hk-5", label: "All Hooks Pass ✓", icon: "✅", tech: "Git Hooks" },
+            { id: "git-hk-6", label: "Push Reaches Remote", icon: "🚀", tech: "Git Push" }
         ],
-        correctOrder: ["ksvc-1", "ksvc-2", "ksvc-3", "ksvc-4", "ksvc-5", "ksvc-6"],
-        hint: "Pod calls service name → CoreDNS resolves to ClusterIP → kube-proxy routes via iptables → load balances across endpoints → traffic arrives at the target pod via CNI."
+        correctOrder: ["git-hk-1", "git-hk-2", "git-hk-3", "git-hk-4", "git-hk-5", "git-hk-6"],
+        hint: "pre-commit runs lint-staged → ESLint/Prettier fix files → commit-msg validates the message format → pre-push runs tests → all pass → push goes through."
     },
     {
         id: 26,
-        title: "K8s RBAC Security",
-        category: "Kubernetes",
+        title: "Git Reset & Recovery",
+        category: "Git",
         difficulty: "Hard",
-        description: "A new developer joined your team and needs read-only access to pods in the 'staging' namespace on your EKS cluster. The security team requires least-privilege RBAC. Arrange the steps to grant scoped access.",
+        description: "You accidentally ran 'git reset --hard' and lost 3 commits of work. Panic sets in. But your senior dev tells you Git never truly deletes commits — they're in the reflog. Arrange the recovery steps.",
         items: [
-            { id: "rbac-1", label: "Create ServiceAccount", icon: "👤", tech: "kubectl create sa" },
-            { id: "rbac-2", label: "Define Role (pod reader)", icon: "📋", tech: "K8s Role (YAML)" },
-            { id: "rbac-3", label: "Set verbs: get, list, watch", icon: "🔒", tech: "RBAC Verbs" },
-            { id: "rbac-4", label: "Create RoleBinding", icon: "🔗", tech: "K8s RoleBinding" },
-            { id: "rbac-5", label: "Generate kubeconfig Token", icon: "🔑", tech: "kubeconfig" },
-            { id: "rbac-6", label: "Test with kubectl auth can-i", icon: "✅", tech: "kubectl auth can-i" }
+            { id: "git-rr-1", label: "git reflog (find lost commits)", icon: "📜", tech: "Git Reflog" },
+            { id: "git-rr-2", label: "Identify target commit hash", icon: "🔍", tech: "Commit Hash" },
+            { id: "git-rr-3", label: "git checkout -b recovery abc123", icon: "🌿", tech: "Recovery Branch" },
+            { id: "git-rr-4", label: "Verify recovered code", icon: "✅", tech: "Code Review" },
+            { id: "git-rr-5", label: "git checkout main", icon: "🔙", tech: "Git Checkout" },
+            { id: "git-rr-6", label: "git merge recovery", icon: "🔀", tech: "Git Merge" }
         ],
-        correctOrder: ["rbac-1", "rbac-2", "rbac-3", "rbac-4", "rbac-5", "rbac-6"],
-        hint: "Create a service account → define a Role with pod permissions → restrict to get/list/watch verbs → bind role to the SA → generate kubeconfig → verify with can-i."
+        correctOrder: ["git-rr-1", "git-rr-2", "git-rr-3", "git-rr-4", "git-rr-5", "git-rr-6"],
+        hint: "Check reflog → find the commit hash before the reset → create a recovery branch at that hash → verify the code is correct → switch to main → merge recovery branch."
     },
     {
         id: 27,
-        title: "K8s HPA Autoscaling",
-        category: "Kubernetes",
-        difficulty: "Medium",
-        description: "Your API pods are overwhelmed during peak hours. The team wants Kubernetes to automatically scale pods based on CPU usage. Set up Horizontal Pod Autoscaler (HPA) from metrics collection to scaling action.",
+        title: "Conventional Commits Flow",
+        category: "Git",
+        difficulty: "Easy",
+        description: "Your team is adopting Conventional Commits to auto-generate changelogs and semantic versions. The new format requires a specific commit message structure. Arrange the steps from writing code to generating a release changelog.",
         items: [
-            { id: "hpa-1", label: "Deploy Metrics Server", icon: "📊", tech: "metrics-server" },
-            { id: "hpa-2", label: "Set CPU Resource Requests", icon: "📋", tech: "resources.requests.cpu" },
-            { id: "hpa-3", label: "Create HPA (target: 70%)", icon: "⚙️", tech: "kubectl autoscale" },
-            { id: "hpa-4", label: "Load Increases → CPU Spikes", icon: "📈", tech: "Prometheus Metrics" },
-            { id: "hpa-5", label: "HPA Controller Scales Up", icon: "🔼", tech: "kube-controller-manager" },
-            { id: "hpa-6", label: "New Pods Scheduled + Ready", icon: "✅", tech: "kube-scheduler" }
+            { id: "git-cc-1", label: "Make Code Changes", icon: "💻", tech: "Development" },
+            { id: "git-cc-2", label: "git add changed files", icon: "📦", tech: "Git Stage" },
+            { id: "git-cc-3", label: "Write: feat(auth): add SSO", icon: "📝", tech: "Conventional Commit" },
+            { id: "git-cc-4", label: "commitlint Validates Format", icon: "✔️", tech: "commitlint" },
+            { id: "git-cc-5", label: "semantic-release Analyzes", icon: "🤖", tech: "semantic-release" },
+            { id: "git-cc-6", label: "CHANGELOG.md Updated", icon: "📋", tech: "Auto Changelog" }
         ],
-        correctOrder: ["hpa-1", "hpa-2", "hpa-3", "hpa-4", "hpa-5", "hpa-6"],
-        hint: "Install metrics-server → set CPU resource requests on pods → create HPA targeting 70% CPU → load comes in → HPA controller detects and scales → new pods get scheduled."
+        correctOrder: ["git-cc-1", "git-cc-2", "git-cc-3", "git-cc-4", "git-cc-5", "git-cc-6"],
+        hint: "Write code → stage files → write a conventional commit message (type(scope): description) → commitlint validates → semantic-release reads commits → CHANGELOG is auto-generated."
     },
     {
         id: 28,
-        title: "K8s CrashLoopBackOff Debug",
-        category: "Kubernetes",
-        difficulty: "Hard",
-        description: "It's 3 AM and your pod is stuck in CrashLoopBackOff. The on-call SRE needs to systematically diagnose and fix it. Arrange the troubleshooting steps from detection to resolution.",
+        title: "Git Tag & Release",
+        category: "Git",
+        difficulty: "Easy",
+        description: "Version 2.0 of your app is ready. The PM says: 'Tag it, push it, and create a GitHub Release with the binary.' You've never created a release before. Arrange the steps from tagging to publishing.",
         items: [
-            { id: "crash-1", label: "kubectl get pods (CrashLoop)", icon: "🔴", tech: "kubectl get pods" },
-            { id: "crash-2", label: "kubectl describe pod", icon: "🔍", tech: "kubectl describe" },
-            { id: "crash-3", label: "kubectl logs --previous", icon: "📄", tech: "kubectl logs" },
-            { id: "crash-4", label: "Check Events + Exit Codes", icon: "🔢", tech: "K8s Events API" },
-            { id: "crash-5", label: "Fix ConfigMap / Secrets", icon: "🔧", tech: "kubectl edit cm" },
-            { id: "crash-6", label: "kubectl rollout restart", icon: "🔄", tech: "kubectl rollout" }
+            { id: "git-tr-1", label: "git tag -a v2.0.0 -m 'v2.0'", icon: "🏷️", tech: "Annotated Tag" },
+            { id: "git-tr-2", label: "git push origin v2.0.0", icon: "🚀", tech: "Push Tag" },
+            { id: "git-tr-3", label: "Go to GitHub Releases page", icon: "🌐", tech: "GitHub UI" },
+            { id: "git-tr-4", label: "Create Release from tag", icon: "📋", tech: "GitHub Release" },
+            { id: "git-tr-5", label: "Write Release Notes", icon: "📝", tech: "Markdown Notes" },
+            { id: "git-tr-6", label: "Attach Build Artifacts", icon: "📦", tech: "Binary Assets" }
         ],
-        correctOrder: ["crash-1", "crash-2", "crash-3", "crash-4", "crash-5", "crash-6"],
-        hint: "See the CrashLoop status → describe for events and conditions → check previous container logs → analyze exit codes → fix the config issue → restart the deployment."
+        correctOrder: ["git-tr-1", "git-tr-2", "git-tr-3", "git-tr-4", "git-tr-5", "git-tr-6"],
+        hint: "Create an annotated tag → push the tag to remote → go to GitHub Releases → create a release from the tag → write release notes → upload build artifacts."
     },
     {
         id: 29,
-        title: "K8s Ingress + TLS Setup",
-        category: "Kubernetes",
-        difficulty: "Medium",
-        description: "Your web app needs a public HTTPS endpoint on Kubernetes. The team uses Nginx Ingress Controller with cert-manager for automatic TLS certificates from Let's Encrypt. Set up the full Ingress stack.",
+        title: "Monorepo Sparse Checkout",
+        category: "Git",
+        difficulty: "Hard",
+        description: "Your company has a massive monorepo (50GB) with 20 microservices. You only work on the 'payments' service. Your laptop can't clone the whole thing. Use Git sparse-checkout to clone only what you need.",
         items: [
-            { id: "ing-1", label: "Install Nginx Ingress (Helm)", icon: "📦", tech: "ingress-nginx Helm" },
-            { id: "ing-2", label: "Deploy cert-manager", icon: "🔐", tech: "cert-manager" },
-            { id: "ing-3", label: "Create ClusterIssuer (LE)", icon: "📜", tech: "Let's Encrypt ACME" },
-            { id: "ing-4", label: "Create Ingress Resource", icon: "🌐", tech: "K8s Ingress YAML" },
-            { id: "ing-5", label: "Annotate tls + secretName", icon: "🔑", tech: "TLS Secret" },
-            { id: "ing-6", label: "DNS A Record → LB IP", icon: "🗺️", tech: "Cloudflare DNS" }
+            { id: "git-sp-1", label: "git clone --filter=blob:none", icon: "📥", tech: "Partial Clone" },
+            { id: "git-sp-2", label: "git sparse-checkout init --cone", icon: "🔧", tech: "Sparse Init" },
+            { id: "git-sp-3", label: "git sparse-checkout set services/payments", icon: "📂", tech: "Set Paths" },
+            { id: "git-sp-4", label: "Only payments/ files appear", icon: "✅", tech: "Filtered Worktree" },
+            { id: "git-sp-5", label: "Work & Commit Normally", icon: "💻", tech: "Git Commit" },
+            { id: "git-sp-6", label: "git push (only your changes)", icon: "🚀", tech: "Git Push" }
         ],
-        correctOrder: ["ing-1", "ing-2", "ing-3", "ing-4", "ing-5", "ing-6"],
-        hint: "Install Ingress controller → install cert-manager → create Let's Encrypt issuer → create Ingress resource → add TLS annotation + secret → point DNS to the load balancer IP."
+        correctOrder: ["git-sp-1", "git-sp-2", "git-sp-3", "git-sp-4", "git-sp-5", "git-sp-6"],
+        hint: "Partial clone (no blobs) → init sparse-checkout in cone mode → set the paths you need → only those files are checked out → work normally → push only your changes."
     },
     {
         id: 30,
-        title: "K8s Secrets Management",
-        category: "Kubernetes",
-        difficulty: "Hard",
-        description: "Your team stores database passwords in plain YAML manifests (bad!). The security audit requires proper secrets management. Migrate from plain secrets to HashiCorp Vault with the External Secrets Operator.",
+        title: "Interactive Rebase Cleanup",
+        category: "Git",
+        difficulty: "Medium",
+        description: "Your feature branch has 8 messy commits like 'WIP', 'fix typo', 'oops'. Before opening a PR, your team requires a clean commit history. Use interactive rebase to squash and reword commits.",
         items: [
-            { id: "sec-1", label: "Deploy HashiCorp Vault", icon: "🏛️", tech: "Vault (Helm)" },
-            { id: "sec-2", label: "Enable KV Secrets Engine", icon: "🔧", tech: "Vault KV v2" },
-            { id: "sec-3", label: "Store DB Creds in Vault", icon: "🔑", tech: "vault kv put" },
-            { id: "sec-4", label: "Install External Secrets Op", icon: "📦", tech: "ESO (Helm)" },
-            { id: "sec-5", label: "Create ExternalSecret CR", icon: "📋", tech: "ExternalSecret YAML" },
-            { id: "sec-6", label: "K8s Secret Auto-Synced", icon: "✅", tech: "K8s Secret Object" }
+            { id: "git-ir-1", label: "git rebase -i HEAD~8", icon: "📝", tech: "Interactive Rebase" },
+            { id: "git-ir-2", label: "Mark commits: squash/fixup", icon: "🔧", tech: "Rebase Commands" },
+            { id: "git-ir-3", label: "Reword remaining commits", icon: "✏️", tech: "Reword Commit" },
+            { id: "git-ir-4", label: "Save & close editor", icon: "💾", tech: "Vim / VS Code" },
+            { id: "git-ir-5", label: "Resolve conflicts (if any)", icon: "⚔️", tech: "Conflict Resolution" },
+            { id: "git-ir-6", label: "git push --force-with-lease", icon: "🚀", tech: "Safe Force Push" }
         ],
-        correctOrder: ["sec-1", "sec-2", "sec-3", "sec-4", "sec-5", "sec-6"],
-        hint: "Deploy Vault → enable KV secrets engine → store credentials → install External Secrets Operator → create ExternalSecret custom resource → K8s secret is automatically synced from Vault."
+        correctOrder: ["git-ir-1", "git-ir-2", "git-ir-3", "git-ir-4", "git-ir-5", "git-ir-6"],
+        hint: "Start interactive rebase for last 8 commits → mark WIP commits as squash/fixup → reword the remaining → save editor → resolve any conflicts → force push with lease."
+    },
+
+    // ==================== CI/CD Puzzles ====================
+    {
+        id: 31,
+        title: "Azure DevOps Pipeline",
+        category: "DevOps",
+        difficulty: "Medium",
+        description: "Your .NET team is migrating from manual deployments to Azure DevOps Pipelines. The PM wants a fully automated CI/CD pipeline that builds, tests, and deploys a .NET 8 API to Azure App Service. Arrange the pipeline stages.",
+        items: [
+            { id: "azdo-1", label: "azure-pipelines.yml Trigger", icon: "🔔", tech: "Azure Pipelines YAML" },
+            { id: "azdo-2", label: "dotnet restore + build", icon: "🔨", tech: ".NET CLI" },
+            { id: "azdo-3", label: "dotnet test (xUnit)", icon: "🧪", tech: "xUnit / NUnit" },
+            { id: "azdo-4", label: "dotnet publish -o ./output", icon: "📦", tech: ".NET Publish" },
+            { id: "azdo-5", label: "Azure Artifact Feed Push", icon: "📤", tech: "Azure Artifacts" },
+            { id: "azdo-6", label: "Deploy to Azure App Service", icon: "🚀", tech: "AzureWebApp@1 Task" }
+        ],
+        correctOrder: ["azdo-1", "azdo-2", "azdo-3", "azdo-4", "azdo-5", "azdo-6"],
+        hint: "Pipeline triggers on push → restore & build .NET → run xUnit tests → publish build output → push to Azure Artifacts → deploy to Azure App Service."
+    },
+    {
+        id: 32,
+        title: "ArgoCD GitOps + K8s Deploy",
+        category: "DevOps",
+        difficulty: "Hard",
+        description: "Your team uses ArgoCD to manage Kubernetes deployments via GitOps. A developer pushes a new Docker image and needs it deployed to the staging cluster automatically. Arrange the full ArgoCD deployment flow.",
+        items: [
+            { id: "argo-1", label: "Push Code → Build Docker Image", icon: "🐳", tech: "GitHub Actions + Docker" },
+            { id: "argo-2", label: "Push Image to Container Registry", icon: "📤", tech: "Docker Hub / ECR / ACR" },
+            { id: "argo-3", label: "Update K8s Manifest (image tag)", icon: "📝", tech: "Kustomize / Helm values" },
+            { id: "argo-4", label: "ArgoCD Detects Manifest Change", icon: "🔄", tech: "ArgoCD App Controller" },
+            { id: "argo-5", label: "ArgoCD Syncs to K8s Cluster", icon: "☸️", tech: "kubectl apply (ArgoCD)" },
+            { id: "argo-6", label: "Health Check + Rollback Ready", icon: "✅", tech: "ArgoCD Health Assessment" }
+        ],
+        correctOrder: ["argo-1", "argo-2", "argo-3", "argo-4", "argo-5", "argo-6"],
+        hint: "Build Docker image → push to registry → update K8s manifest with new tag → ArgoCD detects the Git change → syncs to cluster → runs health checks."
+    },
+    {
+        id: 33,
+        title: "GitLab CI/CD + Docker + K8s",
+        category: "DevOps",
+        difficulty: "Hard",
+        description: "Your startup uses GitLab for everything — code, CI/CD, and container registry. The Go microservice needs to be built as a Docker image, scanned for vulnerabilities, and deployed to a K8s cluster via Helm. Arrange the .gitlab-ci.yml stages.",
+        items: [
+            { id: "glab-1", label: "Build Stage: go build", icon: "🔨", tech: "Go Compiler" },
+            { id: "glab-2", label: "Test Stage: go test ./...", icon: "🧪", tech: "Go Testing" },
+            { id: "glab-3", label: "Docker Build + Push to GitLab CR", icon: "🐳", tech: "GitLab Container Registry" },
+            { id: "glab-4", label: "Trivy Security Scan", icon: "🔍", tech: "Aqua Trivy" },
+            { id: "glab-5", label: "Helm Upgrade --install (staging)", icon: "⎈", tech: "Helm 3" },
+            { id: "glab-6", label: "Manual Approval → Prod Deploy", icon: "🚀", tech: "GitLab Environments" }
+        ],
+        correctOrder: ["glab-1", "glab-2", "glab-3", "glab-4", "glab-5", "glab-6"],
+        hint: "Compile Go → run tests → build Docker image & push to GitLab registry → scan for CVEs with Trivy → Helm deploy to staging → manual gate before production."
+    },
+    {
+        id: 34,
+        title: "Jenkins Blue-Green Deploy",
+        category: "DevOps",
+        difficulty: "Hard",
+        description: "Your e-commerce platform can't afford downtime during deployments. The team uses Jenkins to orchestrate blue-green deployments on Kubernetes with an Nginx ingress controller. Arrange the zero-downtime deployment steps.",
+        items: [
+            { id: "jen-1", label: "Jenkins Build + Test Pipeline", icon: "🔨", tech: "Jenkinsfile (Groovy)" },
+            { id: "jen-2", label: "Deploy 'Green' Version to K8s", icon: "🟢", tech: "kubectl apply (green)" },
+            { id: "jen-3", label: "Run Smoke Tests on Green", icon: "🧪", tech: "Newman / Postman" },
+            { id: "jen-4", label: "Switch Ingress to Green", icon: "🔀", tech: "Nginx Ingress Rules" },
+            { id: "jen-5", label: "Monitor Green (Prometheus)", icon: "📊", tech: "Prometheus + Grafana" },
+            { id: "jen-6", label: "Tear Down Blue (old version)", icon: "🗑️", tech: "kubectl delete (blue)" }
+        ],
+        correctOrder: ["jen-1", "jen-2", "jen-3", "jen-4", "jen-5", "jen-6"],
+        hint: "Build & test → deploy the new 'green' version alongside 'blue' → smoke test green → switch traffic to green → monitor → tear down the old blue."
+    },
+    {
+        id: 35,
+        title: "K8s Rolling Update Strategy",
+        category: "DevOps",
+        difficulty: "Medium",
+        description: "Your API runs 5 replicas on Kubernetes. A new version is ready and the team wants zero-downtime rolling updates. The deployment uses readiness probes and a maxSurge/maxUnavailable strategy. Arrange the rolling update lifecycle.",
+        items: [
+            { id: "kru-1", label: "Update Deployment Image Tag", icon: "📝", tech: "kubectl set image" },
+            { id: "kru-2", label: "K8s Creates New ReplicaSet", icon: "🆕", tech: "ReplicaSet Controller" },
+            { id: "kru-3", label: "New Pods Start (maxSurge: 1)", icon: "🔼", tech: "Rolling Update Strategy" },
+            { id: "kru-4", label: "Readiness Probe Passes", icon: "💓", tech: "HTTP /healthz Probe" },
+            { id: "kru-5", label: "Old Pods Terminated Gradually", icon: "🔽", tech: "maxUnavailable: 0" },
+            { id: "kru-6", label: "All 5 Replicas on New Version", icon: "✅", tech: "kubectl rollout status" }
+        ],
+        correctOrder: ["kru-1", "kru-2", "kru-3", "kru-4", "kru-5", "kru-6"],
+        hint: "Update the image tag → K8s creates a new ReplicaSet → new pods start one at a time → readiness probe confirms they're healthy → old pods drain → all replicas updated."
+    },
+    {
+        id: 36,
+        title: "GitHub Actions → Docker → K8s",
+        category: "DevOps",
+        difficulty: "Medium",
+        description: "Your Node.js API uses GitHub Actions for CI/CD. On every push to main, it needs to build a Docker image, push it to GitHub Container Registry (GHCR), and deploy to a K8s cluster using kubectl. Arrange the workflow steps.",
+        items: [
+            { id: "ghak-1", label: "Push to main triggers workflow", icon: "🔔", tech: "on: push (main)" },
+            { id: "ghak-2", label: "Checkout + Setup Node + Test", icon: "🧪", tech: "actions/checkout + Jest" },
+            { id: "ghak-3", label: "docker/build-push-action", icon: "🐳", tech: "Docker Build + GHCR" },
+            { id: "ghak-4", label: "Login to GHCR (GITHUB_TOKEN)", icon: "🔑", tech: "docker/login-action" },
+            { id: "ghak-5", label: "Set kubeconfig from Secrets", icon: "⚙️", tech: "azure/k8s-set-context" },
+            { id: "ghak-6", label: "kubectl apply -f k8s/deploy.yml", icon: "🚀", tech: "kubectl apply" }
+        ],
+        correctOrder: ["ghak-1", "ghak-2", "ghak-3", "ghak-4", "ghak-5", "ghak-6"],
+        hint: "Push triggers workflow → checkout & run tests → build Docker image → push to GHCR with token auth → configure kubectl with secrets → apply K8s manifests."
+    },
+
+    // ==================== Java Spring & Node.js CI/CD Puzzles ====================
+    {
+        id: 37,
+        title: "Spring Boot → Maven → Docker → K8s",
+        category: "DevOps",
+        difficulty: "Medium",
+        description: "Your team's new Spring Boot 3.2 API is ready. The lead DevOps engineer needs to build the full CI/CD pipeline: compile with Maven, run tests, containerize with Docker, push to a registry, and deploy to Kubernetes via Helm. Arrange the pipeline stages.",
+        items: [
+            { id: "sbci-1", label: "mvn clean package -DskipTests=false", icon: "🔨", tech: "Maven Build" },
+            { id: "sbci-2", label: "JUnit 5 + Testcontainers Tests", icon: "🧪", tech: "JUnit 5 / Testcontainers" },
+            { id: "sbci-3", label: "SonarQube Code Quality Gate", icon: "📊", tech: "SonarQube Scanner" },
+            { id: "sbci-4", label: "Docker Build (multi-stage JDK 21)", icon: "🐳", tech: "Dockerfile" },
+            { id: "sbci-5", label: "Push Image to Harbor Registry", icon: "📤", tech: "Harbor / ECR" },
+            { id: "sbci-6", label: "Helm Upgrade to K8s Staging", icon: "⎈", tech: "Helm 3 + K8s" }
+        ],
+        correctOrder: ["sbci-1", "sbci-2", "sbci-3", "sbci-4", "sbci-5", "sbci-6"],
+        hint: "Maven compiles the JAR → JUnit + Testcontainers run integration tests → SonarQube checks code quality → multi-stage Docker build → push to Harbor → Helm deploys to K8s."
+    },
+    {
+        id: 38,
+        title: "Spring Boot CVE Hotfix Pipeline",
+        category: "DevOps",
+        difficulty: "Hard",
+        description: "A critical CVE (Log4Shell-level) hits your Spring Boot production app on Friday night. Your CISO demands a hotfix deployed within 2 hours. The team must branch, patch, fast-track through CI/CD, and deploy — all while keeping the pipeline safe. Arrange the emergency release flow.",
+        items: [
+            { id: "cve-1", label: "git checkout -b hotfix/cve-2024", icon: "🌿", tech: "Git Hotfix Branch" },
+            { id: "cve-2", label: "Patch pom.xml + Maven BOM Override", icon: "🔧", tech: "Maven Dependency Mgmt" },
+            { id: "cve-3", label: "CI: Build + OWASP Dependency-Check", icon: "🛡️", tech: "OWASP + Jenkins/GHA" },
+            { id: "cve-4", label: "Docker Build + Trivy Image Scan", icon: "🐳", tech: "Trivy Scanner" },
+            { id: "cve-5", label: "Fast-track Deploy to Staging + Smoke Test", icon: "🧪", tech: "Newman / k6" },
+            { id: "cve-6", label: "kubectl rollout to Production", icon: "🚀", tech: "K8s Rolling Update" }
+        ],
+        correctOrder: ["cve-1", "cve-2", "cve-3", "cve-4", "cve-5", "cve-6"],
+        hint: "Create hotfix branch → patch vulnerable dependency → CI builds and scans for CVEs → Docker image scanned with Trivy → smoke test on staging → rolling deploy to production."
+    },
+    {
+        id: 39,
+        title: "Node.js Express → Docker → AWS ECS",
+        category: "DevOps",
+        difficulty: "Medium",
+        description: "Your startup's Express.js API is being moved from a single EC2 instance to AWS ECS Fargate for autoscaling. The DevOps team builds a GitHub Actions pipeline that tests, Dockerizes, and deploys to ECS with zero downtime. Arrange the pipeline.",
+        items: [
+            { id: "necs-1", label: "GitHub Actions: npm ci + Jest", icon: "🧪", tech: "GitHub Actions + Jest" },
+            { id: "necs-2", label: "npm audit --audit-level=high", icon: "🛡️", tech: "npm Security Audit" },
+            { id: "necs-3", label: "Docker Build (node:22-alpine)", icon: "🐳", tech: "Multi-stage Dockerfile" },
+            { id: "necs-4", label: "Push to Amazon ECR", icon: "📤", tech: "AWS ECR" },
+            { id: "necs-5", label: "Update ECS Task Definition", icon: "📋", tech: "ECS Task Def (JSON)" },
+            { id: "necs-6", label: "ECS Service Rolling Deploy", icon: "🚀", tech: "AWS ECS Fargate" }
+        ],
+        correctOrder: ["necs-1", "necs-2", "necs-3", "necs-4", "necs-5", "necs-6"],
+        hint: "CI runs tests → npm audit checks vulnerabilities → Docker build with Alpine → push to ECR → update ECS task definition with new image → ECS rolling deployment."
+    },
+    {
+        id: 40,
+        title: "Spring Boot Canary on K8s",
+        category: "DevOps",
+        difficulty: "Hard",
+        description: "Your e-commerce Spring Boot API handles $2M/day. The team can't risk a bad deployment. The SRE sets up a canary release: deploy the new version to 10% of traffic, monitor error rates with Prometheus, and gradually shift to 100%. Arrange the canary pipeline.",
+        items: [
+            { id: "sbc-1", label: "CI: Maven Build + Docker Push", icon: "🐳", tech: "Jenkins / GitLab CI" },
+            { id: "sbc-2", label: "Deploy Canary (10% traffic split)", icon: "🐤", tech: "Istio VirtualService" },
+            { id: "sbc-3", label: "Prometheus: Monitor Error Rate", icon: "📊", tech: "Prometheus + Grafana" },
+            { id: "sbc-4", label: "Automated Analysis (Flagger)", icon: "🤖", tech: "Flagger / Argo Rollouts" },
+            { id: "sbc-5", label: "Gradual Shift: 50% → 100%", icon: "📈", tech: "Traffic Splitting" },
+            { id: "sbc-6", label: "Old Version Scaled Down", icon: "✅", tech: "K8s Rollout Complete" }
+        ],
+        correctOrder: ["sbc-1", "sbc-2", "sbc-3", "sbc-4", "sbc-5", "sbc-6"],
+        hint: "Build & push Docker image → deploy canary with 10% traffic → monitor metrics → automated analysis decides go/no-go → gradually increase traffic → old version scales down."
+    },
+    {
+        id: 41,
+        title: "Node.js npm Vulnerability Pipeline",
+        category: "DevOps",
+        difficulty: "Medium",
+        description: "Snyk just flagged 5 critical vulnerabilities in your Node.js production API's dependencies. The security team gives you 24 hours. You need to patch, re-test, and push through the full CI/CD pipeline with a security-focused workflow. Arrange the steps.",
+        items: [
+            { id: "nvp-1", label: "Snyk Report: Identify Critical CVEs", icon: "🔍", tech: "Snyk / npm audit" },
+            { id: "nvp-2", label: "npm update + Fix Breaking Changes", icon: "🔧", tech: "npm / yarn" },
+            { id: "nvp-3", label: "CI: Jest Tests + Snyk Re-scan", icon: "🧪", tech: "GitHub Actions + Snyk" },
+            { id: "nvp-4", label: "Docker Build + Trivy Image Scan", icon: "🐳", tech: "Trivy Container Scan" },
+            { id: "nvp-5", label: "Deploy to Staging + DAST Scan", icon: "🌐", tech: "OWASP ZAP" },
+            { id: "nvp-6", label: "Promote to Production (K8s)", icon: "🚀", tech: "ArgoCD Sync" }
+        ],
+        correctOrder: ["nvp-1", "nvp-2", "nvp-3", "nvp-4", "nvp-5", "nvp-6"],
+        hint: "Identify CVEs in Snyk report → patch dependencies → CI re-tests and re-scans → Docker+Trivy image scan → deploy to staging with DAST scan → promote to production."
+    },
+    {
+        id: 42,
+        title: "Spring Monolith → Microservices CD",
+        category: "DevOps",
+        difficulty: "Hard",
+        description: "Your company is splitting a massive Spring Boot monolith into 4 microservices. Each service needs its own CI/CD pipeline, Docker image, Helm chart, and K8s namespace. The DevOps team designs the multi-service deployment orchestration. Arrange the CD flow.",
+        items: [
+            { id: "sms-1", label: "Mono-repo CI: Build Changed Services", icon: "🔨", tech: "Maven Modules + Path Filter" },
+            { id: "sms-2", label: "Run Service-Level Integration Tests", icon: "🧪", tech: "Testcontainers + WireMock" },
+            { id: "sms-3", label: "Docker Build per Microservice", icon: "🐳", tech: "docker-compose build" },
+            { id: "sms-4", label: "Push All Images to Registry", icon: "📤", tech: "Harbor / ACR" },
+            { id: "sms-5", label: "ArgoCD App-of-Apps Sync", icon: "🔄", tech: "ArgoCD ApplicationSet" },
+            { id: "sms-6", label: "K8s: Each Service in Own Namespace", icon: "☸️", tech: "K8s Namespaces + Istio" }
+        ],
+        correctOrder: ["sms-1", "sms-2", "sms-3", "sms-4", "sms-5", "sms-6"],
+        hint: "Build only changed services in mono-repo → run integration tests per service → Docker build each → push all images → ArgoCD app-of-apps syncs all → each service deploys to its K8s namespace."
     }
 ];

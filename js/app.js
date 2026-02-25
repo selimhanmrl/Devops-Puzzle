@@ -161,9 +161,8 @@ const App = (() => {
     function getCategoryBadgeStyle(category) {
         const styles = {
             DevOps: `color: var(--accent-blue); background: rgba(88,166,255,0.1); border: 1px solid rgba(88,166,255,0.2);`,
-            Network: `color: var(--accent-green); background: rgba(63,185,80,0.1); border: 1px solid rgba(63,185,80,0.2);`,
-            Middleware: `color: var(--accent-purple); background: rgba(188,140,255,0.1); border: 1px solid rgba(188,140,255,0.2);`,
-            Kubernetes: `color: var(--accent-orange); background: rgba(240,136,62,0.1); border: 1px solid rgba(240,136,62,0.2);`
+            Git: `color: var(--accent-orange); background: rgba(240,136,62,0.1); border: 1px solid rgba(240,136,62,0.2);`,
+            Middleware: `color: var(--accent-purple); background: rgba(188,140,255,0.1); border: 1px solid rgba(188,140,255,0.2);`
         };
         return styles[category] || '';
     }

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Learn DevOps, Networking, and Middleware concepts through interactive drag-and-drop puzzles. Build CI/CD pipelines, network stacks, and more!">
+        content="Learn DevOps, Git, and Middleware concepts through interactive drag-and-drop puzzles. Build CI/CD pipelines, Git workflows, and more!">
     <title>DevOps Pipeline Builder — Drag & Drop Puzzle Game</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,15 +26,15 @@
                 <span class="title-line">DevOps Pipeline</span>
                 <span class="title-line accent">Builder</span>
             </h1>
-            <p class="welcome-desc">Master DevOps, Networking & Middleware concepts by building real-world architectures
+            <p class="welcome-desc">Master DevOps, Git & Middleware concepts by building real-world architectures
                 through drag-and-drop puzzles.</p>
             <div class="welcome-stats">
                 <div class="stat-item">
-                    <span class="stat-number">30</span>
+                    <span class="stat-number">42</span>
                     <span class="stat-label">Puzzles</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">4</span>
+                    <span class="stat-number">3</span>
                     <span class="stat-label">Categories</span>
                 </div>
                 <div class="stat-item">
@@ -70,14 +70,11 @@
             <button class="filter-btn" data-filter="DevOps" onclick="App.filterPuzzles('DevOps')">
                 <span class="cat-dot devops"></span> DevOps
             </button>
-            <button class="filter-btn" data-filter="Network" onclick="App.filterPuzzles('Network')">
-                <span class="cat-dot network"></span> Network
+            <button class="filter-btn" data-filter="Git" onclick="App.filterPuzzles('Git')">
+                <span class="cat-dot git"></span> Git
             </button>
             <button class="filter-btn" data-filter="Middleware" onclick="App.filterPuzzles('Middleware')">
                 <span class="cat-dot middleware"></span> Middleware
-            </button>
-            <button class="filter-btn" data-filter="Kubernetes" onclick="App.filterPuzzles('Kubernetes')">
-                <span class="cat-dot kubernetes"></span> Kubernetes
             </button>
         </div>
         <div class="puzzle-grid" id="puzzle-grid">
@@ -252,7 +249,7 @@
                         <span class="footer-logo-icon">🧩</span>
                         Pipeline Puzzle
                     </h3>
-                    <p class="footer-tagline">Learn DevOps, Middleware & Kubernetes through interactive drag-and-drop
+                    <p class="footer-tagline">Learn DevOps, Git & Middleware through interactive drag-and-drop
                         puzzles.</p>
                 </div>
                 <div class="footer-links">
