@@ -227,38 +227,54 @@ const App = (() => {
         const item = currentPuzzle.items.find(i => i.id === itemId);
         if (!item) return;
 
-        // If zone already has a card, send it back to pool
-        const existingCard = zoneEl.querySelector('.drag-card');
-        if (existingCard) {
-            sendCardToPool(existingCard.dataset.itemId);
-        }
-
-        // If this card was in another zone, clear it
+        // Find where the dragged card currently lives (another zone, or pool)
         const allZones = document.querySelectorAll('.drop-zone');
+        let sourceZone = null;
         allZones.forEach(z => {
             const c = z.querySelector('.drag-card');
             if (c && c.dataset.itemId === itemId) {
-                z.classList.remove('filled');
-                z.innerHTML = `
-                    <span class="zone-number">Step ${parseInt(z.dataset.slotIndex) + 1}</span>
-                    <span class="zone-placeholder">Drop here</span>
-                `;
+                sourceZone = z;
             }
         });
+
+        // If the target zone already has a different card, swap or return it
+        const existingCard = zoneEl.querySelector('.drag-card');
+        if (existingCard && existingCard.dataset.itemId !== itemId) {
+            const displacedItemId = existingCard.dataset.itemId;
+            const displacedItem = currentPuzzle.items.find(i => i.id === displacedItemId);
+
+            if (sourceZone) {
+                // Swap: place displaced card into the source zone
+                sourceZone.innerHTML = `<span class="zone-number">Step ${parseInt(sourceZone.dataset.slotIndex) + 1}</span>`;
+                const swappedCard = createCard(displacedItem);
+                swappedCard.classList.add('in-slot');
+                sourceZone.appendChild(swappedCard);
+                sourceZone.classList.add('filled');
+                sourceZone.classList.remove('correct', 'incorrect');
+            } else {
+                // Dragged from pool — send displaced card back to pool
+                sendCardToPool(displacedItemId);
+            }
+        } else if (sourceZone) {
+            // Moving to an empty zone — just clear the source zone
+            sourceZone.classList.remove('filled');
+            sourceZone.innerHTML = `
+                <span class="zone-number">Step ${parseInt(sourceZone.dataset.slotIndex) + 1}</span>
+                <span class="zone-placeholder">Drop here</span>
+            `;
+            sourceZone.classList.remove('correct', 'incorrect');
+        }
 
         // Remove card from pool if it's there
         const poolCard = document.querySelector(`#pool-cards .drag-card[data-item-id="${itemId}"]`);
         if (poolCard) poolCard.remove();
 
-        // Place card in zone
-        zoneEl.innerHTML = '';
+        // Place dragged card in target zone
         zoneEl.innerHTML = `<span class="zone-number">Step ${parseInt(zoneEl.dataset.slotIndex) + 1}</span>`;
         const newCard = createCard(item);
         newCard.classList.add('in-slot');
         zoneEl.appendChild(newCard);
         zoneEl.classList.add('filled');
-
-        // Clear any previous correct/incorrect styling
         zoneEl.classList.remove('correct', 'incorrect');
     }
 

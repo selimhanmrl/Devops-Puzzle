@@ -720,15 +720,15 @@ body {
     gap: 0.8rem;
     overflow-x: auto;
     padding: 0.5rem 0;
-    align-items: stretch;
+    align-items: flex-start;
     flex-wrap: wrap;
     justify-content: center;
 }
 
 .drop-zone {
     flex: 0 0 auto;
-    width: 170px;
-    min-height: 90px;
+    width: 160px;
+    min-height: 100px;
     border: 2px dashed var(--border-glow);
     border-radius: var(--radius-md);
     display: flex;
@@ -739,6 +739,13 @@ body {
     position: relative;
     transition: all var(--transition-base);
     background: rgba(255, 255, 255, 0.01);
+    overflow: visible;
+    box-sizing: border-box;
+}
+
+.drop-zone>.zone-number,
+.drop-zone>.zone-placeholder {
+    pointer-events: none;
 }
 
 .drop-zone .zone-number {
@@ -852,8 +859,8 @@ body {
     cursor: grab;
     transition: all var(--transition-fast);
     user-select: none;
-    white-space: nowrap;
     position: relative;
+    box-sizing: border-box;
 }
 
 .drag-card::before {
@@ -901,9 +908,18 @@ body {
     cursor: grab;
     margin: 0;
     width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
     border: none;
     background: transparent;
     justify-content: center;
+    text-align: center;
+    word-break: break-word;
+    white-space: normal;
+    font-size: 0.78rem;
+    padding: 0.5rem 0.4rem;
+    pointer-events: auto;
+    overflow: hidden;
 }
 
 .drag-card.in-slot::before {

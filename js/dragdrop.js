@@ -52,18 +52,31 @@ const DragDrop = (() => {
      * Make a drop zone accept drops
      */
     function makeDropZone(zoneEl, onDrop) {
+        let dragEnterCounter = 0;
+
         zoneEl.addEventListener('dragover', (e) => {
             e.preventDefault();
             e.dataTransfer.dropEffect = 'move';
             zoneEl.classList.add('drag-over');
         });
 
+        zoneEl.addEventListener('dragenter', (e) => {
+            e.preventDefault();
+            dragEnterCounter++;
+            zoneEl.classList.add('drag-over');
+        });
+
         zoneEl.addEventListener('dragleave', (e) => {
-            zoneEl.classList.remove('drag-over');
+            dragEnterCounter--;
+            if (dragEnterCounter <= 0) {
+                dragEnterCounter = 0;
+                zoneEl.classList.remove('drag-over');
+            }
         });
 
         zoneEl.addEventListener('drop', (e) => {
             e.preventDefault();
+            dragEnterCounter = 0;
             zoneEl.classList.remove('drag-over');
             const itemId = e.dataTransfer.getData('text/plain');
             if (itemId && onDrop) {
